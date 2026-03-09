@@ -1,0 +1,154 @@
+Scenario:
+
+SecureDocs Inc., a leading financial services company, handles sensitive documents that only authorized employees can access. To ensure security, SecureDocs Inc. has implemented a Document Access System that verifies employee credentials before allowing access to confidential documents. The system uses a Proxy Pattern to authenticate employees and grant or deny access.
+
+You are tasked with building this Document Access System using the Proxy Pattern, with properties instead of attributes.
+
+ 
+
+Functionality:
+
+In public class Employee, implement the following public field:
+
+Datatype
+
+Field Name
+
+string
+
+documentId
+
+string
+
+employeeName
+
+Create a public constructor in class Employee with string documentId and string employeeName as arguments to set the values of documentId and employeeName.
+
+ 
+
+Implement the following public method in public class AuthenticationRepo,
+
+Method Name
+
+Method Description
+
+public List<Employee> GetAuthorizedEmployees()
+
+This method returns a list of employees who are authorized to access documents.
+
+Create a few authenticated employees using the following,
+
+Document Id: D100; Employee Name: Alice
+
+Document Id: D101; Employee Name: Bob
+
+Document Id: D102; Employee Name: Charlie
+
+ 
+
+Declare the following public method in public interface IDocumentAccess,
+
+Method Name
+
+Method Description
+
+public string GetDocumentAccess(string documentId, string name)
+
+This method handles the process of granting or denying access to documents.
+
+ 
+
+Implement the following public method in public class DocumentService which implements the interface IDocumentAccess,
+
+Method Name
+
+Method Description
+
+public string GetDocumentAccess(string documentId, string name)
+
+This method returns a message indicating access is allowed for authorized employees by returning the string "<name> allowed to access the document".
+
+Input and Output are case-sensitive.
+
+ 
+
+Implement the following public method in public class ProxyService which implements the interface IDocumentAccess,
+
+Method Name
+
+Method Description
+
+public string GetDocumentAccess(string documentId, string name)
+
+This method checks if the employee is authorized to access the document.
+
+It iterates through the list of authorized employees from AuthenticationRepo and compares the documentId and name with the provided parameters. If a match is found, it invokes the GetDocumentAccess method of DocumentService to grant access. If no match is found, it returns "Unauthorized".
+
+Input and Output are case-sensitive.
+
+ 
+
+In the Program class, implement the below-given Method.
+
+Method:
+
+public static void Main(string[] args)
+
+Description:
+
+-       Gather input from the user for the employee's name and document ID.
+
+-       Call the GetDocumentAccess method of the ProxyService class to check if the employee is authorized to access the document.
+
+-       Print the result, either granting access or returning "Unauthorized".
+
+Input and Output are case-sensitive.
+
+Refer to Sample input and output.
+
+ 
+
+Note:
+
+- Keep all methods public.
+
+- Inputs should only be gathered in the Main method.
+
+- Do not use Environment.Exit() to terminate the program. 
+
+- Do not change the given code template.
+
+- In the Sample Input / Output provided, the highlighted text in bold corresponds to the input given by the user and the rest of the text represents the output.
+
+ 
+
+Sample Input 1:
+
+Enter the Employee name:
+
+Alice
+
+Enter the Document Id:
+
+D100
+
+Sample Output 1:
+
+Alice allowed to access the document.
+
+ 
+
+Sample Input 2:
+
+Enter the Employee name:
+
+John
+
+Enter the Document Id:
+
+D111
+
+Sample Output 2:
+
+Unauthorized
+
